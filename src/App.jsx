@@ -1,6 +1,19 @@
+import Friends from './friends';
+// import Users from './users';
 import Batsman from './Batsman';
 import Counter from './export';
+
 import './App.css';
+import { Suspense } from 'react';
+
+// const fatchUsers=fetch('https://jsonplaceholder.typicode.com/users')
+//  .then(res => res.json())
+
+const fetchFriends= async()=>{
+       const res=await fetch("https://jsonplaceholder.typicode.com/users");
+       return res.json();
+}
+
 
 function App() {
   function handleClick() {
@@ -9,10 +22,16 @@ function App() {
   const clikedStyle={
     border:'2px solid black'
   }
+  const FriendsPromise=fetchFriends();
 
   return (
     <>
       <h1>Vite + React</h1>
+      
+       <Suspense fallback={<h3>Loading friends...</h3>}>
+        <Friends FriendsPromise={FriendsPromise} />
+      </Suspense>
+      
       <Batsman></Batsman>
       <Counter />
       <button style={clikedStyle} onClick={handleClick}>Click Me 1</button>

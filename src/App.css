@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+.bcard{
+  
+        border: '2px solid black',
+        
+        margin= '10px',
+        padding= 2em,
+    
+}
